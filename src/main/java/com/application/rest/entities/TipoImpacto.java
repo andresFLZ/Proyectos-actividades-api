@@ -1,10 +1,16 @@
 package com.application.rest.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Data
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "tipos_impacto")
 public class TipoImpacto {
 
@@ -17,4 +23,7 @@ public class TipoImpacto {
 
     @Column(name = "descripcion", length = 50, nullable = false)
     private String descripcion;
+
+    @OneToMany(mappedBy = "tipoImpacto", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Inconveniente> inconvenientes;
 }
