@@ -2,6 +2,7 @@ package com.application.rest.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import java.util.List;
 
 @Data
 @Entity
@@ -23,4 +24,14 @@ public class Actividad {
 
     @Column(name = "tiempo_empleado", nullable = false)
     private Integer tiempoEmpleado;
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "id_proyectos")  // Foreign key
+    private Proyecto proyecto;
+
+    @OneToMany(mappedBy = "actividad", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Inconveniente> inconvenientes;
+
+    @OneToMany(mappedBy = "actividad", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Asignacion> asignaciones;
 }

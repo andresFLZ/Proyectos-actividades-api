@@ -2,6 +2,7 @@ package com.application.rest.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import java.util.List;
 
 @Data
 @Entity
@@ -16,4 +17,7 @@ public class Proyecto {
 
     @Column(name = "descripcion", length = 50, nullable = false)
     private String descripcion;
+
+    @OneToMany(mappedBy = "proyecto", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Actividad> actividades;
 }

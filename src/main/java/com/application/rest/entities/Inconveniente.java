@@ -19,6 +19,10 @@ public class Inconveniente {
 
     // Si se crea un inconveniente con un tipo de impacto que no este en la db se crea el tipo de impacto
     @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "id_tipos_impacto", nullable = false)  // Foreign key
+    @JoinColumn(name = "id_tipos_impacto")  // Foreign key
     private TipoImpacto tipoImpacto;
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "id_actividades")  // Foreign key
+    private Actividad actividad;
 }

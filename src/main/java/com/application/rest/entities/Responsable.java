@@ -3,6 +3,8 @@ package com.application.rest.entities;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 @Entity
 @Table(name = "responsables")
@@ -17,4 +19,7 @@ public class Responsable {
 
     @Column(name = "email", length = 40, nullable = false)
     private String email;
+
+    @OneToMany(mappedBy = "responsable", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Asignacion> asignaciones;
 }
