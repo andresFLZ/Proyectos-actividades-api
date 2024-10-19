@@ -1,10 +1,19 @@
 package com.application.rest.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.util.List;
 
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "actividades")
 public class Actividad {
@@ -25,13 +34,16 @@ public class Actividad {
     @Column(name = "tiempo_empleado", nullable = false)
     private Integer tiempoEmpleado;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "id_proyectos")  // Foreign key
+    @ManyToOne
+    @JoinColumn(name = "id_proyectos")
+    @JsonIgnore
     private Proyecto proyecto;
 
     @OneToMany(mappedBy = "actividad", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<Inconveniente> inconvenientes;
 
     @OneToMany(mappedBy = "actividad", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<Asignacion> asignaciones;
 }

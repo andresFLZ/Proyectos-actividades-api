@@ -1,11 +1,16 @@
 package com.application.rest.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @Entity
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "inconvenientes")
 public class Inconveniente {
@@ -17,12 +22,12 @@ public class Inconveniente {
     @Column(name = "descripcion", length = 50, nullable = false)
     private String descripcion;
 
-    // Si se crea un inconveniente con un tipo de impacto que no este en la db se crea el tipo de impacto
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     @JoinColumn(name = "id_tipos_impacto")  // Foreign key
     private TipoImpacto tipoImpacto;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     @JoinColumn(name = "id_actividades")  // Foreign key
+    @JsonIgnore
     private Actividad actividad;
 }

@@ -1,13 +1,16 @@
 package com.application.rest.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.util.List;
 
 @Data
 @Entity
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "tipos_impacto")
@@ -24,5 +27,6 @@ public class TipoImpacto {
     private String descripcion;
 
     @OneToMany(mappedBy = "tipoImpacto", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
     private List<Inconveniente> inconvenientes;
 }
