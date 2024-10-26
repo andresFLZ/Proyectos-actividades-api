@@ -75,7 +75,7 @@ public class AsignacionController {
             asignacion.setActividad(asignacionDTO.getActividad());
 
             asignacionService.save(asignacion);
-            return ResponseEntity.ok("Asignación actualizada correctamente");
+            return ResponseEntity.ok("Asignacion actualizada correctamente");
         }
 
         return ResponseEntity.notFound().build();
@@ -87,7 +87,7 @@ public class AsignacionController {
 
         if (id != null) {
             asignacionService.deleteById(id);
-            return ResponseEntity.ok("Asignación eliminada correctamente");
+            return ResponseEntity.ok("Asignacion eliminada correctamente");
         }
 
         return ResponseEntity.notFound().build();

@@ -34,7 +34,7 @@ public class TipoImpactoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> findById(@RequestParam Integer id) {
+    public ResponseEntity<?> findById(@PathVariable Integer id) {
         Optional<TipoImpacto> tipoImpactoOptional = tipoImpactoService.findById(id);
 
         if (tipoImpactoOptional.isPresent()) {

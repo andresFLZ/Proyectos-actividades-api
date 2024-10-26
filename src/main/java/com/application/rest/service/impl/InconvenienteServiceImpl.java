@@ -13,7 +13,7 @@ import java.util.Optional;
 public class InconvenienteServiceImpl implements IInconvenienteService {
 
     @Autowired
-    IInconvenienteDAO inconvenienteDAO;
+    private IInconvenienteDAO inconvenienteDAO;
 
     @Override
     public List<Inconveniente> findAll() {

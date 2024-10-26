@@ -78,6 +78,8 @@ public class ResponsableController {
             responsable.setNombre(responsableDTO.getNombre());
             responsable.setEmail(responsableDTO.getEmail());
 
+            responsableService.save(responsable);
+
             return ResponseEntity.ok().body("Responsable actualizado con exito");
         }
 
